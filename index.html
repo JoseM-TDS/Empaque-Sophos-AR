@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <title>Modelo Empaque en AR</title>
+</head>
+<body>
+    <model-viewer 
+    alt="Visualizacion completa de empaque para Libreria Sophos"
+    src="Models/Empaque-Sophos-Caja.glb"
+    src="Models/Empaque-Sophos-Stand-1.glb"
+    src="Models/Empaque-Sophos-Stand-2.glb"
+    ar
+    environment-image="Assets\blue_photo_studio_2k.hdr"
+    shadow-intensity="1"
+    camera-controls touch-action="pan-y"
+    style="width: 90vw; height: 45vw;"></model-viewer>
+
+    <div class="slider" style="text-align: center; position: relative;">
+    <div class="slides" style="height: auto; width: auto;">
+      <button class="slide-selected" style="height: 60px; width: 60px; border-radius: 10px; background-image: url(Assets/number1.svg); background-size: cover" onclick="switchSrc(this, 'Caja')">
+
+      </button><button class="slide" style="height: 60px; width: 60px; border-radius: 10px; background-image: url(Assets/number2.svg); background-size: cover" onclick="switchSrc(this, 'Stand-1')">
+
+      </button><button class="slide" style="height: 60px; width: 60px; border-radius: 10px; background-image: url(Assets/number3.svg); background-size: cover" onclick="switchSrc(this, 'Stand-2')">
+  </div>
+  
+  <script type="module">
+      const modelViewer = document.querySelector("model-viewer");
+      
+      window.switchSrc = (element, name) => {
+          const base = "Models/Empaque-Sophos-" + name;
+          modelViewer.src = base + '.glb';
+          const slides = document.querySelectorAll(".slide");
+          slides.forEach((element) => {element.classList.remove("selected");});
+          element.classList.add("selected");
+        };
+        
+        document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+            ev.preventDefault();
+        });
+</script>
+</body>
+</html>
